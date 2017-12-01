@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;admins&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../go/src/agent" />
+      <root url="file://$PROJECT_DIR$/../go/src/bubble" />
+      <root url="file://$PROJECT_DIR$/../go/src/github.com" />
+      <root url="file://$PROJECT_DIR$/../go/src/main" />
+      <root url="file://$PROJECT_DIR$/../go/src/hello" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../go/src/agent" />
+      <root url="file://$PROJECT_DIR$/../go/src/bubble" />
+      <root url="file://$PROJECT_DIR$/../go/src/github.com" />
+      <root url="file://$PROJECT_DIR$/../go/src/main" />
+      <root url="file://$PROJECT_DIR$/../go/src/hello" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>
