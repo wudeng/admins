@@ -3,14 +3,14 @@ package data
 import (
 	"basic/ssdb/gossdb"
 	"testing"
-
-	"github.com/golang/glog"
+	"fmt"
 )
 
 func Test_normal_record(t *testing.T) {
-	gossdb.Connect("119.29.24.17", 8888, 1)
-	list, _ := GetNormalRecord("65168", "", "", 100)
-	for _, v := range list {
-		glog.Errorln(*v)
-	}
+	gossdb.Connect("192.168.50.10", 8888, 1)
+	//InitServers()
+	var s Server
+	s.Id = 1
+	s.Get()
+	fmt.Println(s)
 }

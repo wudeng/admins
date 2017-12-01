@@ -179,19 +179,19 @@ function getSideBar() {
                 {icon:"am-icon-table",path:geturl("/tools/notice.html"), name:"游戏公告"}
               ]
         },
-        {
+        /*{
             name: "日志管理",
             icon:"am-icon-eye",
             items:      [
-            {icon:"am-icon-table",path:geturl("/operation/privaterecord.html"), name:"私人局记录"},
-            {icon:"am-icon-table",path:geturl("/operation/matchrecord.html"),name: "比赛场记录"},
-            {icon:"am-icon-table",path:geturl("/operation/normalrecord.html"), name:"金币场记录"},
+                {icon:"am-icon-table",path:geturl("/operation/privaterecord.html"), name:"私人局记录"},
+                {icon:"am-icon-table",path:geturl("/operation/matchrecord.html"),name: "比赛场记录"},
+                {icon:"am-icon-table",path:geturl("/operation/normalrecord.html"), name:"金币场记录"},
                 {icon:"am-icon-table",path:geturl("/operation/privatecreate.html"), name:"私人房创建记录"},
                 { icon:"am-icon-table",path:geturl("/operation/consume.html"),  name:"消耗日志"}
-       /*     {icon:"am-icon-table",path:geturl("/operation/exchangerecord.html"), name:"虚拟兑换记录"},
-            {icon:"am-icon-table",path:geturl("/operation/exchangerecord.html"), name:"实物兑换记录"},
-
-            {icon:"am-icon-table",path:geturl("/operation/loginrecord.html"),name: "登录日志"},*/]
+                //{icon:"am-icon-table",path:geturl("/operation/exchangerecord.html"), name:"虚拟兑换记录"},
+                //{icon:"am-icon-table",path:geturl("/operation/exchangerecord.html"), name:"实物兑换记录"},
+                //{icon:"am-icon-table",path:geturl("/operation/loginrecord.html"),name: "登录日志"},
+            ]
         },
         {
             name: "订单管理",
@@ -200,7 +200,7 @@ function getSideBar() {
             {icon:"am-icon-table",path:geturl("/operation/chargeorder.html"), name:"下单记录"},
             {icon:"am-icon-table",path:geturl("/operation/transition.html"), name:"交易记录"}
             ]
-        },
+        },*/
         {
             name: "数据统计",
             icon:"am-icon-file",

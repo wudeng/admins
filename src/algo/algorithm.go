@@ -15,7 +15,7 @@ import (
 
 const (
 	// 牌局基础的常量
-	TOTAL uint32 = 108 //一副贵州麻将的总数
+	TOTAL uint32 = 108 //一副天书的总数
 	BING  uint32 = 2   //同子类型
 	TIAO  uint32 = 1   //条子类型
 	WAN   uint32 = 0   //万字类型

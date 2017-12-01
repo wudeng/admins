@@ -17,10 +17,13 @@ import (
 	"github.com/golang/glog"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	_ "errors"
 )
 var (
 	version = "v0.0.1"
 )
+
+// 登陆中间件
 func loginMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		/*cookie, err := c.Cookie("login")
@@ -53,12 +56,12 @@ func main() {
 
 	e.Static("/assets", "AmazeUI/assets")
 
-	e.Static("/users", "AmazeUI/users", loginMiddleware)
-	e.Static("/operation", "AmazeUI/operation", loginMiddleware)
-	e.Static("/roles", "AmazeUI/roles", loginMiddleware)
-	e.Static("/room", "AmazeUI/room", loginMiddleware)
-	e.Static("/statistics", "AmazeUI/statistics", loginMiddleware)
-	e.Static("/tools", "AmazeUI/tools", loginMiddleware)
+	e.Static("/users", "AmazeUI/users")
+	e.Static("/operation", "AmazeUI/operation")
+	e.Static("/roles", "AmazeUI/roles")
+	e.Static("/room", "AmazeUI/room")
+	e.Static("/statistics", "AmazeUI/statistics")
+	e.Static("/tools", "AmazeUI/tools")
 
 	e.Static("/login", "AmazeUI/login")
 

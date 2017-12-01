@@ -9,8 +9,8 @@ import (
 	"github.com/golang/glog"
 )
 
-var ADMIN = "yisen@qq.com"
-var admin = &Admin{Id: ADMIN, Passwd: utils.Md5("yisen2016"), Name: "超级管理员", Group_id: 1}
+var ADMIN = "wudeng256@qq.com"
+var admin = &Admin{Id: ADMIN, Passwd: utils.Md5("yyf2017"), Name: "超级管理员", Group_id: 1}
 
 var groupList = []Group{{1, "超级管理员", "拥有最高级权限", 1}, {2, "管理员", "拥有管理玩家权限", 2}}
 

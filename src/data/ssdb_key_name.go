@@ -4,7 +4,6 @@ const (
 	USERS_INDEX string = "admins_users_index"
 	USERS       string = "admins_users:"
 
-	//USER_GROUP_INDEX string = "admins_user_group_index"
 	USER_GROUP       string = "admins_user_group"
 	USER_GROUP_INDEX string = "admins_user_group_index"
 
@@ -21,6 +20,7 @@ const (
 )
 
 const (
+	KEY_SERVER_LIST string = "serverlist"
 	KEY_GAIN_COIN  string = "rankgain"
 	KEY_TOTAL_COIN string = "ranktotal"
 	KEY_EXP        string = "rankexp"
