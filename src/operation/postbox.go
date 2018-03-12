@@ -1,16 +1,26 @@
 package operation
 
 import (
-	"admincall"
 	"data"
 	"net/http"
-	"strconv"
-	"strings"
-
-	"github.com/golang/glog"
 	"github.com/labstack/echo"
 )
 
+func Postbox(c echo.Context) error {
+	id := c.FormValue("Id")                        // string
+	//title := c.FormValue("Title")                // string
+	//content := c.FormValue("Content")            // string
+	//kind, _ := strconv.Atoi(c.FormValue("Kind")) //1:公告，2：圈子消息，3,：奖励
+
+	servers := data.ListServer()
+	for _, s := range servers {
+		go s.Mail(id)
+	}
+
+	return c.JSON(http.StatusOK, data.H{"status": "ok"})
+}
+
+/*
 func Postbox(c echo.Context) error {
 	userids := c.FormValue("UserIds")                        // string
 	count, _ := strconv.Atoi(c.FormValue("Count"))           // uint32
@@ -92,4 +102,4 @@ func Postbox(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, data.H{"status": "ok"})
-}
+}*/

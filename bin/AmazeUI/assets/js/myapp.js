@@ -148,6 +148,13 @@ function getHeadBar() {
 function getSideBar() {
     return [
         {
+            name:"服务器管理",
+            icon:"am-icon-user",
+            items: [
+                {icon:"am-icon-table", path:geturl("/servers/list.html"), name:"服务器列表"}
+            ]
+        },
+        {
             name:"玩家管理",
             icon:"am-icon-user",
             items: [

@@ -18,6 +18,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	_ "errors"
+	"server"
 )
 var (
 	version = "v0.0.1"
@@ -59,6 +60,7 @@ func main() {
 	e.Static("/users", "AmazeUI/users")
 	e.Static("/operation", "AmazeUI/operation")
 	e.Static("/roles", "AmazeUI/roles")
+	e.Static("/servers", "AmazeUI/server")
 	e.Static("/room", "AmazeUI/room")
 	e.Static("/statistics", "AmazeUI/statistics")
 	e.Static("/tools", "AmazeUI/tools")
@@ -70,7 +72,7 @@ func main() {
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Redirect(http.StatusTemporaryRedirect, "/statistics/index.html?v="+data.Version)
-	})
+	}, loginMiddleware)
 
 	e.POST("/roles/list", role.List, loginMiddleware)
 	e.POST("/roles/search", role.Search, loginMiddleware)
@@ -86,6 +88,11 @@ func main() {
 
 	e.POST("/users/getloginlimit", user.GetLoginLimit, loginMiddleware)
 	e.POST("/users/delloginlimit", user.DelLoginLimit, loginMiddleware)
+
+	e.POST("/servers/list", server.Servers, loginMiddleware)
+	e.POST("/servers/create", server.CreateServer, loginMiddleware)
+	e.POST("/servers/edit", server.Edit, loginMiddleware)
+	e.POST("/servers/delete", server.Delete, loginMiddleware)
 
 	e.POST("/group/create", user.CreateGroup, loginMiddleware)
 	e.POST("/group/edit", user.EditGroup, loginMiddleware)

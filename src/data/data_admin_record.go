@@ -18,6 +18,10 @@ const (
 	OPERATE_KIND_MODIFY_GROUP uint32 = 8 // 修改组
 	OPERATE_KIND_SEND_MAIL    uint32 = 9 // 发送邮件
 
+	OPERATE_KIND_ADD_SERVER uint32 = 10  // 添加服务器
+	OPERATE_KIND_MODIFY_SERVER uint32 = 11 // 修改服务器
+	OPERATE_KIND_DEL_SERVER uint32 = 12 // 删除服务器
+
 )
 
 //管理员操作记录

@@ -94,25 +94,37 @@
 
 
                             <div  class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">邮件标题</label>
+                                <label  class="am-u-sm-3 am-form-label">邮件ID</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" placeholder="请您输入邮件标题"  v-model="content.Title">
-                                    <small>25字以内写出您的邮件标题</small>
+                                    <select  v-model="content.Id">
+                                        <option value="0" selected="selected">自定义邮件</option>
+                                        <option value="1">八卦副本</option>
+                                        <option value="2">世界BOSS</option>
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="am-form-group">
-                                <label for="user-intro" class="am-u-sm-3 am-form-label">邮件内容</label>
-                                <div class="am-u-sm-9">
-                                    <textarea class="" rows="5"  placeholder="请您输入邮件内容" v-model="content.Content"></textarea>
-                                    <small>250字以内写出您的邮件内容</small>
+                            <div v-if="content.Id == 0">
+                                <div  class="am-form-group">
+                                    <label  class="am-u-sm-3 am-form-label">邮件标题</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" placeholder="请您输入邮件标题"  v-model="content.Title">
+                                        <small>25字以内写出您的邮件标题</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">邮件内容</label>
+                                    <div class="am-u-sm-9">
+                                        <textarea class="" rows="5"  placeholder="请您输入邮件内容" v-model="content.Content"></textarea>
+                                        <small>250字以内写出您的邮件内容</small>
+                                    </div>
                                 </div>
                             </div>
 
 
 
                             <div class="am-form-group">
-
                                 <label  class="am-u-sm-3 am-form-label">邮件类型</label>
                                 <div class="am-u-sm-9">
                                     <select  v-model="content.Kind">
@@ -165,27 +177,15 @@
                                                 class="am-form-field am-input-sm" placeholder="最后登录时间-从"/>
                                      </div>
                                  </div>
-         -->
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">玩家ID</label>
                                 <div class="am-u-sm-9">
-
                                     <textarea class="" rows="5" id="user-intro" placeholder="输入您要发放的玩家ID"  v-model="content.UserIds"></textarea>
                                     <small>向多个玩家发放请用逗号","隔开</small>
                                 </div>
                             </div>
 
-                        <!--    <div class="am-form-group">
-                                <label for="user-intro" class="am-u-sm-3 am-form-label">邮件标题</label>
-                                <div class="am-u-sm-9">
-                                    <input  placeholder="请您输入邮件标题" v-model="content.Title"></textarea>
-                                    <small>25字以内写出您的邮件标题</small>
-                                </div>
-                            </div>
--->
-
-
-
+         -->
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
                                     <button type="button" class="am-btn am-btn-primary" v-on:click="onSubmit">提交数据</button>
@@ -221,7 +221,7 @@
 
     new Vue({
         el:"#issue_props",
-        data:{content:{WidgetType:"1",Count:1,Desc:"",UserIds:"",VIP:"22",Kind:1}},
+        data:{content:{Id:"0", WidgetType:"1",Count:1,Desc:"",UserIds:"",VIP:"22",Kind:1}},
         methods:{
             onSubmit:function () {
 
@@ -229,10 +229,10 @@
                     $.Alert("请您输入道具数量")
                     return
                 }
-                if (this.$data["content"].UserIds==""){
-                    $.Alert("请您输入玩家ID")
-                    return
-                }
+                //if (this.$data["content"].UserIds==""){
+                //    $.Alert("请您输入玩家ID")
+                //    return
+                //}
 
                 $.ajax({
                     type: "POST",

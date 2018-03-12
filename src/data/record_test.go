@@ -1,16 +1,17 @@
 package data
 
 import (
-	"basic/ssdb/gossdb"
 	"testing"
 	"fmt"
+	"basic/ssdb/gossdb"
 )
 
 func Test_normal_record(t *testing.T) {
 	gossdb.Connect("192.168.50.10", 8888, 1)
 	//InitServers()
 	var s Server
-	s.Id = 1
+	s.Id = 2
 	s.Get()
-	fmt.Println(s)
+	ret := s.Mail("1")
+	fmt.Println(ret)
 }
