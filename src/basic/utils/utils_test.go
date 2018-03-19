@@ -17,8 +17,8 @@ func Test_ran(t *testing.T) {
 	//	t.Log(Conver10to62(a), len(Conver10to62(a)))
 
 	//}
-	//str := "12345678901"
-	str := Conver10to62(RandInt64())
+	str := "12345678901"
+	//str := Conver10to62(RandInt64())
 	t.Log(str, len(str))
 	if len(str) < 12 {
 		var buf = make([]byte, 12-len(str))
@@ -68,6 +68,10 @@ func TestPWD(t *testing.T) {
 
 func TestPhone(t *testing.T) {
 	t.Log(PhoneRegexp("8601593533372"))
+}
+
+func TestMd5(t *testing.T) {
+	fmt.Println(Md5("yyf2018"))
 }
 
 type AA struct {

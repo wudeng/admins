@@ -24,7 +24,7 @@ func DeleteGroup(c echo.Context) error {
 		}
 		adrd.Save()
 
-		return c.JSON(http.StatusOK, data.H{"status": "ok"})
+		return c.JSON(http.StatusOK, data.H{"status": "ok", "msg": "删除组成功"})
 	}
 }
 func CreateGroup(c echo.Context) error {

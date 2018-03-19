@@ -220,3 +220,124 @@ function getSideBar() {
         }
     ]
 }
+
+(function(){
+    Vue.component('sidebar-component', {
+        template:`
+            <!-- sidebar start -->
+            <div class="tpl-left-nav tpl-left-nav-hover">
+                <div class="tpl-left-nav-list">
+                    <ul class="tpl-left-nav-menu" id="admin-sidebar-list">
+                        <li class="tpl-left-nav-item">
+                            <a href="/" class="nav-link active">
+                                <i class="am-icon-home"></i>
+                                <span>首页</span>
+                            </a>
+                        </li>
+                        <!-- table start -->
+
+                        <!-- table start -->
+
+                        <li v-for="item in items" class="tpl-left-nav-item">
+                            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                                <i :class="item.icon"></i>
+                                <span>{{ item.name }} </span>
+                                <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                            </a>
+                            <ul class="tpl-left-nav-sub-menu" style="display: block;">
+                                <li v-for="i in item.items">
+                                    <a :href="i.path">
+                                        <i :class="i.icon"></i>
+                                        <span>{{ i.name}}</span>
+                                        <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        `,
+        data: function() {
+            return {
+                items: getSideBar()
+            }
+        }
+    })
+})();
+
+(function(){
+    Vue.component('header-component', {
+        template: `
+            <header class="am-topbar am-topbar-inverse admin-header">
+                <div class="am-topbar-brand">
+                    <strong>天书</strong>
+                    <small>后台管理系统</small>
+                </div>
+                <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right"></div>
+
+                <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+                        data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+                        class="am-icon-bars"></span></button>
+                <!-- headbar start -->
+                <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+                    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list"
+                        id="admin-head-list">
+                        <li v-for="item in items" class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                            <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                                <span :class="item.icon"></span> {{item.name}} <span class="am-icon-caret-down"></span>
+                            </a>
+                            <ul class="am-dropdown-content tpl-dropdown-content">
+                                <li v-for="i in item.items">
+                                    <a :href="i.path" type="button" :onclick="i.action"><span :class="i.icon"></span> </span> {{
+                                        i.name}}</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- headbar end -->
+            </header>
+        `,
+        data: function() {
+            return {
+                items: getHeadBar()
+            }
+        }
+    })
+})();
+
+function getServerList(self) {
+    $.ajax({
+        type: "POST",
+        url: "/servers/list",
+        data: {},
+        dataType: "json",
+        success: function (data) {
+            if (data["status"] == "ok") {
+                //console.info(data["data"])
+                self.servers = data.data
+            }
+        }
+    })
+}
+
+(function() {
+    Vue.component('server-list-component', {
+        props: ["servers", "content"],
+        template: `
+              <div  class="am-form-group">
+                  <label  class="am-u-sm-3 am-form-label">选择服务器</label>
+                  <div class="am-u-sm-9">
+                    <div v-for="item in servers">
+                        <div class="am-u-sm-2">
+                              <input type="checkbox" v-bind:value="item.id" v-model="content.server_ids"></input>
+                              <label >{{item.nm}}</label>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        `
+    })
+})();

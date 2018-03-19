@@ -20,67 +20,14 @@
 
 
 <body data-type="index">
-<header class="am-topbar am-topbar-inverse admin-header">
-    <div class="am-topbar-brand">
-        <strong>天书</strong>
-        <small>后台管理系统</small>
+    <div id = "admin-header">
+        <header-component></header-component>
     </div>
-    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right"> </div>
-
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-    <!-- headbar start -->
-    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list" id="admin-head-list">
-            <li v-for="item in items" class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
-                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span :class="item.icon"></span> {{item.name}} <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content tpl-dropdown-content">
-                    <li v-for="i in item.items" >
-                        <a :href="i.path" type="button" :onclick="i.action"><span :class="i.icon"></span> </span> {{ i.name}}</a></li>
-
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- headbar end -->
-</header>
 
 <div class="tpl-page-container tpl-page-header-fixed">
-    <!-- sidebar start -->
-    <div class="tpl-left-nav tpl-left-nav-hover">
-        <div class="tpl-left-nav-list">
-            <ul class="tpl-left-nav-menu" id="admin-sidebar-list">
-                <li class="tpl-left-nav-item">
-                    <a href="/" class="nav-link active">
-                        <i class="am-icon-home"></i>
-                        <span>首页</span>
-                    </a>
-                </li>
-                <!-- table start -->
-
-                <li v-for="item in items" class="tpl-left-nav-item">
-                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
-                        <i :class="item.icon"></i>
-                        <span>{{ item.name }} </span>
-                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
-                    </a>
-                    <ul class="tpl-left-nav-sub-menu" style="display: block;">
-                        <li v-for="i in item.items">
-                            <a :href="i.path">
-                                <i :class="i.icon"></i>
-                                <span>{{ i.name}}</span>
-                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-            </ul>
-        </div>
+    <div id = "admin-sidebar">
+        <sidebar-component></sidebar-component>
     </div>
-    <!-- sidebar end -->
-
 
 
     <div class="tpl-content-wrapper"  id="serverListPane" >
@@ -109,6 +56,7 @@
                             <td class="am-text-nowrap">服务器名称</td>
                             <td class="am-text-nowrap">IP地址</td>
                             <td class="am-text-nowrap">TCP端口</td>
+                            <td class="am-text-nowrap">HTTP端口</td>
                             <td class="am-text-nowrap">状态</td>
                             <td class="am-text-nowrap">推荐</td>
                             <td class="am-text-nowrap table-set">操作</td>
@@ -121,6 +69,7 @@
                             <td>{{ v.nm }}</td>
                             <td>{{ v.ip }}</td>
                             <td>{{ v.pt }}</td>
+                            <td>{{ v.http_pt }}</td>
                             <td>{{ v.st }}</td>
                             <td>{{ v.re }}</td>
                             <td><a href="#" type="button" v-on:click="onEdit(index )">详细</a> <a href="#" type="button"
@@ -170,9 +119,16 @@
                             </div>
 
                             <div class="am-form-group am-margin-vertical-sm">
-                                <label class="am-u-sm-2 am-form-label">端口</label>
+                                <label class="am-u-sm-2 am-form-label">TCP端口</label>
                                 <div class="am-u-sm-10" id="SelectGroup">
                                     <input id="port" type="text" name="port" value="" v-model="server.pt"/>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group am-margin-vertical-sm">
+                                <label class="am-u-sm-2 am-form-label">HTTP端口</label>
+                                <div class="am-u-sm-10" id="SelectGroup">
+                                    <input id="http_port" type="text" name="http_port" value="" v-model="server.http_pt"/>
                                 </div>
                             </div>
 
@@ -216,13 +172,11 @@
 
 <script>
     new Vue({
-        el: '#admin-sidebar-list',
-        data: {items: getSideBar() }
+        el: '#admin-sidebar'
     })
 
     new Vue({
-        el:"#admin-head-list",
-        data:{items: getHeadBar() }
+        el:"#admin-header"
     })
 
     var edit = new Vue({

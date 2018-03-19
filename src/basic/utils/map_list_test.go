@@ -5,7 +5,7 @@ package utils
 
 import "testing"
 
-func Test_ran(t *testing.T) {
+func Test_xxx(t *testing.T) {
 	list := &List{}
 	t.Log(list)
 	//m := NewMap()

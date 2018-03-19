@@ -27,17 +27,16 @@ var (
 // 登陆中间件
 func loginMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		/*cookie, err := c.Cookie("login")
+		cookie, err := c.Cookie("login")
 		if err != nil || cookie == nil || len(cookie.Value) <= 0 || data.Sessions.Get(cookie.Value) == nil {
 			if c.Request().Method == "GET" {
 				c.Request().Header.Add("Cache-Control", "no-cache")
 				return c.Redirect(http.StatusTemporaryRedirect, "/login/login.html")
 			} else if c.Request().Method == "POST" {
-				c.JSON(http.StatusOK, data.H{"status": "fail", "errorcode": 100, "msg": "未登陆"})
-				return errors.New("未登陆")
+				return c.JSON(http.StatusOK, data.H{"status": "fail", "errorcode": 100, "msg": "未登陆"})
 			}
 			return err
-		}*/
+		}
 		return next(c)
 	}
 }
@@ -49,6 +48,7 @@ func main() {
 	data.LoadConf(config)
 	data.Version = version
 	e := echo.New()
+	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.Gzip())
 	//	e.Use(middleware.CSRF())
@@ -125,6 +125,7 @@ func main() {
 
 
 	data.InitAdmin()
+	data.InitServers()
 	data.LoadLimitIPs()
 	admincall.Init(data.Conf.CallServer)
 	e.Start(data.Conf.Port)

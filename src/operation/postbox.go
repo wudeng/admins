@@ -4,19 +4,27 @@ import (
 	"data"
 	"net/http"
 	"github.com/labstack/echo"
+	"fmt"
+	"strconv"
 )
 
 func Postbox(c echo.Context) error {
-	id := c.FormValue("Id")                        // string
+	values, _ := c.FormParams()
+	serverIds := values["server_ids[]"]
+	id := values.Get("Id")
+	fmt.Println("values:", values)
+	fmt.Println("server_ids:", serverIds)
+	fmt.Println("mail_id:", id)
 	//title := c.FormValue("Title")                // string
 	//content := c.FormValue("Content")            // string
 	//kind, _ := strconv.Atoi(c.FormValue("Kind")) //1:公告，2：圈子消息，3,：奖励
-
-	servers := data.ListServer()
-	for _, s := range servers {
+	s := data.Server{}
+	for _, serverId := range serverIds {
+		s.Id, _ = strconv.ParseInt(serverId, 10, 64)
+		s.Get()
+		fmt.Println(s)
 		go s.Mail(id)
 	}
-
 	return c.JSON(http.StatusOK, data.H{"status": "ok"})
 }
 
